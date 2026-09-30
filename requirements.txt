@@ -1,0 +1,3 @@
+pyDatalog
+kanren
+sympy
