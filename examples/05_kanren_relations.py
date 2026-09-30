@@ -1,20 +1,18 @@
-from kanren import Relation, facts, run, var, lall
+from kanren import Relation, facts, run, var
 
+# Define a relation.
 parent = Relation()
+
+# Add facts.
 facts(
     parent,
     ("john", "mary"),
-    ("mary", "susan"),
     ("john", "tom"),
 )
 
-x, y, z = var(), var(), var()
+# Create a logic variable.
+x = var()
 
-def grandparent(person, grandchild):
-    return lall(parent(person, y), parent(y, grandchild))
-
+# Find all values of x for which parent("john", x) is true.
 print("Children of john:")
 print(run(0, x, parent("john", x)))
-
-print("\nGrandparents of susan:")
-print(run(0, x, grandparent(x, "susan")))
